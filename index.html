@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kanak Aabhushan – Premium Indian Jewellery Showroom. Hallmark certified gold, bridal, and diamond jewellery in a wide range of collections." />
+  <meta name="keywords" content="gold jewellery, bridal jewellery, hallmark jewellery, Indian jewellery, necklace, bangles, rings, mangalsutra" />
+  <meta name="author" content="Kanak Aabhushan" />
+  <title>Kanak Aabhushan | Premium Indian Jewellery Showroom</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="light-mode">
+
+  <!-- ░░ LOADING SCREEN ░░ -->
+  <div id="loader" class="loader">
+    <div class="loader-inner">
+      <div class="loader-logo">
+        <span class="loader-ka">कनक</span>
+        <span class="loader-en">Kanak Aabhushan</span>
+      </div>
+      <div class="loader-bar"><div class="loader-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- ░░ WHATSAPP BUTTON ░░ -->
+  <a href="https://wa.me/9142629478?text=Hello%20Kanak%20Aabhushan%2C%20I%20am%20interested%20in%20your%20jewellery%20collections." target="_blank" class="whatsapp-btn" aria-label="Chat on WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span>WhatsApp</span>
+  </a>
+
+  <!-- ░░ BACK TO TOP ░░ -->
+  <button id="backToTop" class="back-to-top" aria-label="Back to top">&#8679;</button>
+
+  <!-- ░░ HEADER / NAV ░░ -->
+  <header class="header" id="header">
+    <nav class="navbar container">
+      <a href="#home" class="logo">
+        <span class="logo-symbol">✦</span>
+        <div class="logo-text">
+          <span class="logo-main">Kanak Aabhushan</span>
+          <span class="logo-sub">Pure Gold &bull; Hallmark Certified</span>
+        </div>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#collections">Collections</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#rates">Gold Rates</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+     
+      </ul>
+
+      <div class="nav-actions">
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+          <span class="sun">☀</span><span class="moon">☾</span>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ░░ HERO ░░ -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <div class="hero-pattern"></div>
+      <div class="hero-glow"></div>
+    </div>
+    <div class="hero-content container">
+      <p class="hero-eyebrow reveal-up">— Est. 1990, kanak AAbhushan —</p>
+      <h1 class="hero-title reveal-up">
+        Adorn Every<br />
+        <em>Precious Moment</em>
+      </h1>
+      <p class="hero-desc reveal-up">Hallmark certified gold &amp; bridal jewellery crafted with generations of artisan pride. Visit our showroom to discover collections that tell your story.</p>
+      <div class="hero-cta reveal-up">
+        <a href="#collections" class="btn btn-primary">Explore Collections</a>
+        <a href="#contact" class="btn btn-outline">Book a Visit</a>
+      </div>
+      <div class="hero-stats reveal-up">
+        <div class="stat"><span class="stat-num" data-target="38">0</span><span class="stat-label">Years of Trust</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num" data-target="5000">0</span><span class="stat-label">Happy Families</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num" data-target="12">0</span><span class="stat-label">Collections</span></div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll</span><div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ░░ MARQUEE STRIP ░░ -->
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <span>✦ Hallmark 916 Certified</span>
+      <span>✦ BIS Hallmark 750</span>
+      <span>✦ Bridal Jewellery</span>
+      <span>✦ Custom Designs</span>
+      <span>✦ Trusted Since 1985</span>
+      <span>✦ Japla Finest</span>
+      <span>✦ Hallmark 916 Certified</span>
+      <span>✦ BIS Hallmark 750</span>
+      <span>✦ Bridal Jewellery</span>
+      <span>✦ Custom Designs</span>
+      <span>✦ Trusted Since 1985</span>
+      <span>✦ Japla Finest</span>
+    </div>
+  </div>
+
+  <!-- ░░ FEATURED COLLECTIONS ░░ -->
+  <section class="section collections-section" id="collections">
+  <div class="container">
+    <div class="section-head">
+      <p class="section-eyebrow reveal-up">Our Heritage</p>
+      <h2 class="section-title reveal-up">Featured Collections</h2>
+      <p class="section-desc reveal-up">
+        Every piece in our showroom is a testament to master craftsmanship and timeless design.
+      </p>
+    </div>
+
+    <div class="collections-grid">
+
+      <div class="collection-card reveal-up" data-category="gold">
+        <div class="collection-image">
+          <img src="images/gold jewellary.png" alt="Gold Jewellery">
+        </div>
+        <h3>Gold Jewellery</h3>
+        <p>Classic &amp; contemporary gold pieces for every occasion.</p>
+      </div>
+
+      <div class="collection-card reveal-up" data-category="bridal">
+        <div class="collection-image">
+          <img src="images/bridal collection.png" alt="Bridal Collection">
+        </div>
+        <h3>Bridal Collection</h3>
+        <p>Complete bridal sets crafted to make your special day unforgettable.</p>
+      </div>
+
+      <div class="collection-card reveal-up" data-category="necklace">
+        <div class="collection-image">
+          <img src="images/necklace.jpg" alt="Necklace Sets">
+        </div>
+        <h3>Necklace Sets</h3>
+        <p>Exquisite necklaces from delicate chains to grand haar sets.</p>
+      </div>
+
+      <div class="collection-card reveal-up" data-category="earrings">
+        <div class="collection-image">
+          <img src="images/earring.png" alt="Earrings">
+        </div>
+        <h3>Earrings</h3>
+        <p>Studs, jhumkas, drops &amp; chandbalis for every face &amp; mood.</p>
+      </div>
+
+      <div class="collection-card reveal-up" data-category="rings">
+        <div class="collection-image">
+          <img src="images/ring.png" alt="Rings">
+        </div>
+        <h3>Rings</h3>
+        <p>Engagement, wedding, &amp; fashion rings in stunning designs.</p>
+      </div>
+
+      <div class="collection-card reveal-up" data-category="bangles">
+        <div class="collection-image">
+          <img src="images/bangles.png" alt="Bangles">
+        </div>
+        <h3>Bangles</h3>
+        <p>Traditional kadas, churis, &amp; designer bangles in pure gold.</p>
+      </div>
+
+      <div class="collection-card reveal-up" data-category="mangalsutra">
+        <div class="collection-image">
+          <img src="images/mangalsutra.png" alt="Mangalsutra">
+        </div>
+        <h3>Mangalsutra</h3>
+        <p>Sacred &amp; stylish mangalsutras for the modern bride.</p>
+      </div>
+
+      <div class="collection-card reveal-up" data-category="mens">
+        <div class="collection-image">
+          <img src="images/mens jewellery.png" alt="Men's Jewellery">
+        </div>
+        <h3>Men's Jewellery</h3>
+        <p>Chains, bracelets &amp; rings crafted for the modern gentleman.</p>
+      </div>
+
+      <div class="collection-card reveal-up" data-category="kids">
+        <div class="collection-image">
+          <img src="images/kids jewellery.png" alt="Kids Jewellery">
+        </div>
+        <h3>Kids Jewellery</h3>
+        <p>Delicate &amp; safe pieces for your little ones' precious moments.</p>
+      </div>
+
+      <div class="collection-card reveal-up hallmark-card" data-category="hallmark750">
+        <div class="collection-image">
+          <img src="images/750.png" alt="Hallmark 750">
+        </div>
+        <h3>Hallmark 750</h3>
+        <p>BIS certified 18kt gold — superior craftsmanship at every gram.</p>
+        <span class="hallmark-badge">BIS 750</span>
+      </div>
+
+      <div class="collection-card reveal-up hallmark-card" data-category="hallmark916">
+        <div class="collection-image">
+          <img src="images/916.png" alt="Hallmark 916">
+        </div>
+        <h3>Hallmark 916</h3>
+        <p>The purest 22kt gold collection — India's most trusted standard.</p>
+        <span class="hallmark-badge">BIS 916</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  <!-- ░░ PRODUCT GALLERY ░░ -->
+  <section class="section gallery-section" id="gallery">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-eyebrow reveal-up">Handpicked Pieces</p>
+        <h2 class="section-title reveal-up">Product Gallery</h2>
+        <p class="section-desc reveal-up">Browse our curated selection. Click any piece to see details.</p>
+      </div>
+
+      <!-- Search & Filter -->
+      <div class="gallery-controls reveal-up">
+        <div class="search-box">
+          <input type="text" id="productSearch" placeholder="Search jewellery…" aria-label="Search products" />
+          <span class="search-icon">🔍</span>
+        </div>
+        <div class="filter-tabs" role="tablist">
+          <button class="filter-btn active" data-filter="all" role="tab">All</button>
+          <button class="filter-btn" data-filter="gold" role="tab">Gold</button>
+          <button class="filter-btn" data-filter="bridal" role="tab">Bridal</button>
+          <button class="filter-btn" data-filter="necklace" role="tab">Necklace</button>
+          <button class="filter-btn" data-filter="earrings" role="tab">Earrings</button>
+          <button class="filter-btn" data-filter="rings" role="tab">Rings</button>
+          <button class="filter-btn" data-filter="bangles" role="tab">Bangles</button>
+          <button class="filter-btn" data-filter="mangalsutra" role="tab">Mangalsutra</button>
+          <button class="filter-btn" data-filter="mens" role="tab">Men's</button>
+        </div>
+      </div>
+
+      <div class="products-grid" id="productsGrid">
+        <!-- Products injected by JS -->
+      </div>
+      <p class="no-results" id="noResults" style="display:none;">No jewellery found. Try a different search or filter.</p>
+    </div>
+  </section>
+
+  <!-- ░░ PRODUCT MODAL ░░ -->
+  <div class="modal-overlay" id="productModal" role="dialog" aria-modal="true" aria-label="Product details">
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+      <div class="modal-img-wrap"><img id="modalImg" src="" alt="" loading="lazy" /></div>
+      <div class="modal-info">
+        <span class="modal-badge" id="modalBadge"></span>
+        <h3 id="modalName"></h3>
+        <p id="modalDesc"></p>
+        <div class="modal-meta">
+          <span id="modalWeight"></span>
+          <span id="modalPurity"></span>
+        </div>
+        <a href="#contact" class="btn btn-primary modal-enquiry" id="modalEnquiry">Enquire Now</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ░░ GOLD & SILVER RATES ░░ -->
+  <section class="section rates-section" id="rates">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-eyebrow reveal-up">Updated Daily</p>
+        <h2 class="section-title reveal-up">Gold &amp; Silver Rates</h2>
+        <p class="section-desc reveal-up">Today's indicative market rates in Japla. Final prices at showroom may vary.</p>
+      </div>
+      <div class="rates-grid">
+        
+        <div class="rate-card glass reveal-up featured-rate">
+          <div class="rate-badge">Most Popular</div>
+          <div class="rate-icon">⚜</div>
+          <h3>Gold 22kt (916)</h3>
+          <div class="rate-value" id="rate22kt">₹6,800 <span>/gram</span></div>
+          <div class="rate-change up">▲ ₹110 today</div>
+          <p class="rate-note">Hallmark 916 Certified</p>
+        </div>
+        <div class="rate-card glass reveal-up">
+          <div class="rate-icon">🏅</div>
+          <h3>Gold 18kt (750)</h3>
+          <div class="rate-value" id="rate18kt">₹5,570 <span>/gram</span></div>
+          <div class="rate-change up">▲ ₹90 today</div>
+          <p class="rate-note">Hallmark 750 Certified</p>
+        </div>
+        <div class="rate-card glass reveal-up">
+          <div class="rate-icon">🔘</div>
+          <h3>Silver </h3>
+          <div class="rate-value" id="rateSilver">₹92 <span>/gram</span></div>
+          <div class="rate-change down">▼ ₹3 today</div>
+          <p class="rate-note">Pure Silver</p>
+        </div>
+      </div>
+      <p class="rates-disclaimer reveal-up">* Rates are indicative only. Prices include making charges at showroom. GST applicable as per government norms. Last updated: <span id="rateUpdateTime"></span></p>
+    </div>
+  </section>
+
+  <!-- ░░ WHY CHOOSE US ░░ -->
+  <section class="section why-section">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-eyebrow reveal-up">Our Promise</p>
+        <h2 class="section-title reveal-up">Why Choose Kanak Aabhushan</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card reveal-up">
+          <div class="why-icon">🏆</div>
+          <h3>Hallmark Certified</h3>
+          <p>Every piece carries a BIS hallmark — your guarantee of purity, weight, and craftsmanship. No compromise, ever.</p>
+        </div>
+        <div class="why-card reveal-up">
+          <div class="why-icon">🤝</div>
+          <h3>38 Years of Trust</h3>
+          <p>Serving Japla families since 1990, with thousands of brides adorned and generations of loyal customers.</p>
+        </div>
+        <div class="why-card reveal-up">
+          <div class="why-icon">🎨</div>
+          <h3>Latest Designs</h3>
+          <p>Our design team travels India's top jewellery fairs to bring you the freshest styles every season, from traditional to contemporary.</p>
+        </div>
+        <div class="why-card reveal-up">
+          <div class="why-icon">💰</div>
+          <h3>Transparent Pricing</h3>
+          <p>Making charges clearly displayed. No hidden costs. You pay for gold and craftsmanship — nothing else.</p>
+        </div>
+        <div class="why-card reveal-up">
+          <div class="why-icon">🔄</div>
+          <h3>Easy Exchange</h3>
+          <p>Exchange your old gold jewellery at fair market rates. We value your trust more than a single transaction.</p>
+        </div>
+        <div class="why-card reveal-up">
+          <div class="why-icon">🛡</div>
+          <h3>Lifetime Cleaning</h3>
+          <p>Free lifetime polishing and cleaning for all jewellery purchased from us. Your pieces stay as bright as the day you bought them.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ ANIMATED COUNTERS ░░ -->
+  <section class="section counters-section">
+    <div class="container counters-grid">
+      <div class="counter-item reveal-up">
+        <span class="counter-num" data-target="38">0</span>
+        <span class="counter-plus">+</span>
+        <p>Years in Business</p>
+      </div>
+      <div class="counter-item reveal-up">
+        <span class="counter-num" data-target="5000">0</span>
+        <span class="counter-plus">+</span>
+        <p>Happy Families</p>
+      </div>
+      <div class="counter-item reveal-up">
+        <span class="counter-num" data-target="2500">0</span>
+        <span class="counter-plus">+</span>
+        <p>Unique Designs</p>
+      </div>
+      <div class="counter-item reveal-up">
+        <span class="counter-num" data-target="100">0</span>
+        <span class="counter-plus">%</span>
+        <p>Hallmark Certified</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ TESTIMONIALS ░░ -->
+  <section class="section testimonials-section" id="testimonials">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-eyebrow reveal-up">Customer Voices</p>
+        <h2 class="section-title reveal-up">What Our Families Say</h2>
+      </div>
+      <div class="testimonials-slider">
+        <div class="testimonial-track" id="testimonialTrack">
+          <div class="testimonial-slide">
+            <div class="stars">★★★★★</div>
+            <p class="testimonial-text">"We purchased our daughter's entire bridal set from Kanak Aabhushan. The quality is extraordinary and the hallmark gives us complete peace of mind. Highly recommended to every family in Japla!"</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">S</div>
+              <div><strong>Sunita Devi</strong><span>Japla</span></div>
+            </div>
+          </div>
+          <div class="testimonial-slide">
+            <div class="stars">★★★★★</div>
+            <p class="testimonial-text">"Incredible collection and very honest staff. They explained every detail about purity and making charges without any pressure. My wife was overjoyed with her anniversary gift."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">R</div>
+              <div><strong>Rajesh Kumar</strong><span>Japla</span></div>
+            </div>
+          </div>
+          <div class="testimonial-slide">
+            <div class="stars">★★★★★</div>
+            <p class="testimonial-text">"The 916 hallmark collection is simply stunning. The designs are modern yet traditionally rooted. We exchanged old jewellery at a fair price and the process was completely transparent."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">P</div>
+              <div><strong>Priya Singh</strong><span>Japla</span></div>
+            </div>
+          </div>
+          <div class="testimonial-slide">
+            <div class="stars">★★★★★</div>
+            <p class="testimonial-text">"Three generations of our family have shopped here. The trust and quality Kanak Aabhushan offers is unmatched in the region. The staff treats you like family."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">A</div>
+              <div><strong>Amita Pandey</strong><span>Japla</span></div>
+            </div>
+          </div>
+          <div class="testimonial-slide">
+            <div class="stars">★★★★★</div>
+            <p class="testimonial-text">"Bought my engagement ring and my fiancée's necklace set here. Both pieces were exactly what we dreamed of. The craftsmen's attention to detail is visible in every single piece."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">V</div>
+              <div><strong>Vikram Sharma</strong><span>Japla</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="slider-controls">
+          <button class="slider-btn" id="sliderPrev" aria-label="Previous testimonial">&#8592;</button>
+          <div class="slider-dots" id="sliderDots"></div>
+          <button class="slider-btn" id="sliderNext" aria-label="Next testimonial">&#8594;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ VIDEO SHOWCASE ░░ -->
+  <section class="section video-section">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-eyebrow reveal-up">Our Craft</p>
+        <h2 class="section-title reveal-up">See the Artistry</h2>
+        <p class="section-desc reveal-up">Watch how our master artisans transform raw gold into wearable poetry.</p>
+      </div>
+      <div class="video-grid">
+        <div class="video-card reveal-up">
+          <div class="video-thumb">
+            <div class="video-overlay">
+              <button class="play-btn" aria-label="Play video">▶</button>
+            </div>
+            <div class="video-placeholder">
+              <span>🎬</span>
+              <p>Bridal Collection 2024</p>
+            </div>
+          </div>
+          <h4>Grand Bridal Showcase</h4>
+          <p>Our most coveted bridal sets — from chokers to maang tikka.</p>
+        </div>
+        <div class="video-card reveal-up">
+          <div class="video-thumb">
+            <div class="video-overlay">
+              <button class="play-btn" aria-label="Play video">▶</button>
+            </div>
+            <div class="video-placeholder">
+              <span>🎬</span>
+              <p>Artisan Workshop Tour</p>
+            </div>
+          </div>
+          <h4>The Making of Gold</h4>
+          <p>A rare look inside our artisan workshop — craft meets devotion.</p>
+        </div>
+        <div class="video-card reveal-up">
+          <div class="video-thumb">
+            <div class="video-overlay">
+              <button class="play-btn" aria-label="Play video">▶</button>
+            </div>
+            <div class="video-placeholder">
+              <span>🎬</span>
+              <p>Hallmark Certification</p>
+            </div>
+          </div>
+          <h4>Our Hallmark Promise</h4>
+          <p>How every piece earns its BIS hallmark — your quality guarantee.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ INSTAGRAM GALLERY ░░ -->
+  <section class="section insta-section">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-eyebrow reveal-up">@kanakaabhushan</p>
+        <h2 class="section-title reveal-up">Instagram Gallery</h2>
+        <p class="section-desc reveal-up">Follow us for daily jewellery inspiration, new arrivals, and behind-the-scenes glimpses.</p>
+      </div>
+      <div class="insta-grid reveal-up" id="instaGrid">
+        <!-- Injected by JS -->
+      </div>
+      <div class="text-center reveal-up" style="margin-top:2rem;">
+        <a href="https://instagram.com/kanakaabhushan" target="_blank" class="btn btn-outline">Follow on Instagram</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ ABOUT ░░ -->
+  <section class="section about-section" id="about">
+    <div class="container about-grid">
+      <div class="about-visual reveal-up">
+        <div class="about-img-frame">
+          <div class="about-img-inner">
+            <span class="about-emoji">⚜</span>
+            <p>Est. 1990</p>
+            <p>Japla</p>
+          </div>
+          <div class="about-accent-ring"></div>
+        </div>
+      </div>
+      <div class="about-content reveal-up">
+        <p class="section-eyebrow">Our Story</p>
+        <h2 class="section-title" style="text-align:left;">Crafting Trust Since 1990</h2>
+        <p>Kanak Aabhushan was founded by Santosh Soni in the heart of Japla with a single belief: every family deserves beautiful, genuine, and fairly priced gold jewellery. What started as a small workshop grew over four decades into one of the most trusted jewellery showrooms in Nalanda district.</p>
+        <p style="margin-top:1rem;">Today, led by the second generation, we continue that legacy — blending traditional Bihari craftsmanship with contemporary design sensibilities. Our hallmark-certified jewellery represents not just gold, but the aspirations and milestones of thousands of families.</p>
+        <div class="about-values">
+          <div class="value-item">
+            <span class="value-icon">🎯</span>
+            <div>
+              <strong>Our Mission</strong>
+              <p>To make pure, certified, beautifully crafted jewellery accessible to every family in Bihar.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <span class="value-icon">👁</span>
+            <div>
+              <strong>Our Vision</strong>
+              <p>To be Bihar's & Jharkhand's most trusted jewellery brand — known for integrity, artistry, and lasting relationships.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ CONTACT ░░ -->
+  <section class="section contact-section" id="contact">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-eyebrow reveal-up">Get in Touch</p>
+        <h2 class="section-title reveal-up">Visit Our Showroom</h2>
+        <p class="section-desc reveal-up">We'd love to help you find the perfect piece. Walk in or send us an enquiry.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info reveal-up">
+          <div class="contact-item">
+            <span class="contact-icon">📍</span>
+            <div>
+              <strong>Address</strong>
+              <p>Main Market, Near Gandhi Chowk,<br />Japla, Nalanda – 822116, J</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">📞</span>
+            <div>
+              <strong>Phone</strong>
+              <p><a href="tel:+919305654835">+91 93056 54835</a><br /><a href="tel:+919304654835">+91 93046 54835</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">✉</span>
+            <div>
+              <strong>Email</strong>
+              <p><a href="mailto:kanak.aabhushan01@gmail.com">info@kanakaabhushan.in</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">🕐</span>
+            <div>
+              <strong>Showroom Hours</strong>
+              <p>Mon – Sat: 10:00 AM – 8:00 PM<br />Sunday: 11:00 AM – 6:00 PM</p>
+            </div>
+          </div>
+          <!-- Google Maps -->
+          <div class="map-embed">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3629.729981736703!2d84.00059836110901!3d24.52942405328437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398c470065b49b27%3A0x891d4a3666cf78f3!2sKanak%20Aabhushan%20Gandhi%20chowk%2C%20japla!5e0!3m2!1sen!2sin!4v1782287496369!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+
+        <form class="contact-form glass reveal-up" id="contactForm" novalidate>
+          <h3>Send an Enquiry</h3>
+          <div class="form-group">
+            <label for="name">Your Name *</label>
+            <input type="text" id="name" name="name" placeholder="e.g. Priya Sharma" required />
+            <span class="form-error" id="nameError"></span>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" placeholder="e.g. 98765 43210" required pattern="[0-9]{10}" />
+            <span class="form-error" id="phoneError"></span>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" />
+            <span class="form-error" id="emailError"></span>
+          </div>
+          <div class="form-group">
+            <label for="interest">Interested In</label>
+            <select id="interest" name="interest">
+              <option value="">Select a collection…</option>
+              <option>Gold Jewellery</option>
+              <option>Bridal Collection</option>
+              <option>Necklace Sets</option>
+              <option>Earrings</option>
+              <option>Rings</option>
+              <option>Bangles</option>
+              <option>Mangalsutra</option>
+              <option>Men's Jewellery</option>
+              <option>Kids Jewellery</option>
+              <option>Hallmark 916</option>
+              <option>Hallmark 750</option>
+              <option>Custom Design</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" placeholder="Tell us what you're looking for…"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" id="submitBtn">Send Enquiry</button>
+          <div class="form-success" id="formSuccess" style="display:none;">
+            <span>✅</span> Thank you! We'll contact you within 24 hours.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ FOOTER ░░ -->
+  <footer class="footer">
+    <div class="footer-top container">
+      <div class="footer-brand">
+        <a href="#home" class="logo footer-logo">
+          <span class="logo-symbol">✦</span>
+          <div class="logo-text">
+            <span class="logo-main">Kanak Aabhushan</span>
+            <span class="logo-sub">Pure Gold &bull; Hallmark Certified</span>
+          </div>
+        </a>
+        <p>Japla's most trusted jewellery destination — hallmark certified, artisan crafted, and customer loved since 1990.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook" class="social-link">f</a>
+          <a href="#" aria-label="Instagram" class="social-link">in</a>
+          <a href="#" aria-label="YouTube" class="social-link">▶</a>
+          <a href="https://wa.me/9304654835" aria-label="WhatsApp" class="social-link">W</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Collections</h4>
+        <ul>
+          <li><a href="#collections">Gold Jewellery</a></li>
+          <li><a href="#collections">Bridal Sets</a></li>
+          <li><a href="#collections">Necklaces</a></li>
+          <li><a href="#collections">Earrings</a></li>
+          <li><a href="#collections">Rings</a></li>
+          <li><a href="#collections">Bangles</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#rates">Gold Rates</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Certifications</h4>
+        <ul>
+          <li><a href="#">BIS Hallmark 916</a></li>
+          <li><a href="#">BIS Hallmark 750</a></li>
+          <li><a href="#">ISO Certified</a></li>
+          <li><a href="#">IBJA Member</a></li>
+        </ul>
+        <div class="hallmark-badges">
+          <span>BIS 916</span>
+          <span>BIS 750</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom container">
+      <p>&copy; <span id="footerYear"></span> Kanak Aabhushan. All rights reserved. | Designed with ♥ in Japla,Hussianabad</p>
+      <p>Jewellery images are representational. Actual products may vary. Prices subject to market rates.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
