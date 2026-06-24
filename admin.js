@@ -339,6 +339,7 @@ function initPublish() {
 async function publishAll() {
   // Copy draft → live for every flagged section
   const flags = DRAFT.flags;
+
   if (flags.products)     save(KEY.LIVE_PRODUCTS,     DRAFT.products);
   if (flags.collections)  save(KEY.LIVE_COLLECTIONS,  DRAFT.collections);
   if (flags.rates)        save(KEY.LIVE_RATES,        DRAFT.rates);
@@ -346,41 +347,44 @@ async function publishAll() {
   if (flags.hero)         save(KEY.LIVE_HERO,         DRAFT.hero);
   if (flags.about)        save(KEY.LIVE_ABOUT,        DRAFT.about);
   if (flags.contact)      save(KEY.LIVE_CONTACT,      DRAFT.contact);
-// FIRESTORE SAVE
 
-if (flags.rates) {
-  await setDoc(doc(db, "rates", "current"), {
-    gold18kt: Number(DRAFT.rates.gold18kt || 0),
-    gold22kt: Number(DRAFT.rates.gold22kt || 0),
-    silver: Number(DRAFT.rates.silver || 0)
-  });
-}
+  // FIRESTORE SAVE
 
-if (flags.contact) {
-  await setDoc(doc(db, "contact", "info"), DRAFT.contact);
-}
+  if (flags.rates) {
+    await setDoc(doc(db, "rates", "current"), {
+      gold18kt: Number(DRAFT.rates.gold18kt || 0),
+      gold22kt: Number(DRAFT.rates.gold22kt || 0),
+      silver: Number(DRAFT.rates.silver || 0)
+    });
+  }
+
+  if (flags.contact) {
+    await setDoc(doc(db, "contact", "info"), DRAFT.contact);
+  }
+
+  if (flags.products) {
+    for (const product of DRAFT.products) {
+      await setDoc(
+        doc(db, "products", String(product.id)),
+        {
+          id: product.id,
+          name: product.name,
+          cat: product.cat,
+          desc: product.desc,
+          weight: product.weight,
+          purity: product.purity,
+          img: product.img
+        }
+      );
+    }
+  }
+
   // Clear flags
   DRAFT.flags = {};
   save(KEY.DRAFT_FLAGS, {});
   updateDraftIndicator();
   showToast('Published! Changes are now live on the website.', 'success');
   updateDashboard();
-}
-if (flags.products) {
-  for (const product of DRAFT.products) {
-    await setDoc(
-      doc(db, "products", String(product.id)),
-      {
-        id: product.id,
-        name: product.name,
-        cat: product.cat,
-        desc: product.desc,
-        weight: product.weight,
-        purity: product.purity,
-        img: product.img
-      }
-    );
-  }
 }
 /* ── DASHBOARD ───────────────────────────────────────────────── */
 function initDashboard() {
