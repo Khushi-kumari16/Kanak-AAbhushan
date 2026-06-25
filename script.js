@@ -102,7 +102,7 @@ const DEFAULT_HERO = {
 
 const DEFAULT_ABOUT = {
   title:'Crafting Trust Since 1985',
-  p1:'Kanak Aabhushan was founded by Santosh Kumar Soni in the heart of Japla with a single belief: every family deserves beautiful, genuine, and fairly priced gold jewellery. What started as a small workshop grew over four decades into one of the most trusted jewellery showrooms in Nalanda district.',
+  p1:'Kanak Aabhushan was founded by Santosh Kumar Soni in the heart of Japla with a single belief: every family deserves beautiful, genuine, and fairly priced gold jewellery. What started as a small workshop grew over four decades into one of the most trusted jewellery showrooms in palamu district.',
   p2:'Today, led by the second generation, we continue that legacy — blending traditional  craftsmanship with contemporary design sensibilities. Our hallmark-certified jewellery represents not just gold, but the aspirations and milestones of thousands of families.',
   mission:'To make pure, certified, beautifully crafted jewellery accessible to every family in Jharkhand.',
   vision:"To be Japla's most trusted jewellery brand — known for integrity, artistry, and lasting relationships.",
