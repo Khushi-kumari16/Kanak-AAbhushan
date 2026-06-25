@@ -998,6 +998,73 @@ body.dark-mode .nav-links { background: var(--cream); opacity: 1; }
  .header {
   backdrop-filter: none;
   background: var(--cream);
+}
+/* ===========================
+   MOBILE FOOTER FIX
+=========================== */
+@media (max-width: 768px) {
+
+  .footer-content{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:2rem;
+    text-align:center;
+  }
+
+  .footer-brand,
+  .footer-links,
+  .footer-contact{
+    width:100%;
+    max-width:320px;
+    margin:0 auto;
+  }
+
+  .footer-links h4,
+  .footer-contact h4{
+    margin-bottom:12px;
+    text-align:center;
+  }
+
+  .footer-links ul{
+    padding:0;
+    margin:0;
+  }
+
+  .footer-links li{
+    margin-bottom:10px;
+  }
+
+  .footer-bottom{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    gap:10px;
+    padding:20px 15px;
+  }
+
+  .footer-bottom p{
+    margin:0;
+    font-size:.85rem;
+    line-height:1.7;
+  }
+
+  .hallmark-badges{
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  .footer-brand img{
+    margin:0 auto 15px;
+  }
+
+  .footer-brand{
+    text-align:center;
+  }
 }*/
   /* Hero 
   .hero { padding-top: 64px; }
