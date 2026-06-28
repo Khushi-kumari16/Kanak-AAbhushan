@@ -5,7 +5,12 @@
    If no live data exists, it falls back to built-in defaults.
    ============================================================ */
 'use strict';
+import { db } from "./firebase.js";
 
+import {
+    collection,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 /* ── LIVE DATA KEYS (written by admin on Publish) ────────────── */
 const LIVE = {
   PRODUCTS:     'ka_live_products',
@@ -127,6 +132,7 @@ const SITE = {
   get about()        { return liveLoad(LIVE.ABOUT,        DEFAULT_ABOUT);        },
   get contact()      { return liveLoad(LIVE.CONTACT,      DEFAULT_CONTACT);      },
 };
+let PRODUCTS = [];
 
 /* ── INSTAGRAM PLACEHOLDERS ──────────────────────────────────── */
 const INSTA_ITEMS = [
@@ -267,19 +273,57 @@ function applyCollections() {
     </div>`).join('');
   initCollectionCardLinks();
 }
+async function loadProductsFromFirebase() {
+
+    try {
+
+        const snapshot = await getDocs(collection(db, "products"));
+
+        PRODUCTS = [];
+
+        snapshot.forEach((doc) => {
+            PRODUCTS.push(doc.data());
+        });
+
+        console.log("Products:", PRODUCTS);
+
+        renderProducts(PRODUCTS);
+
+    } catch (error) {
+
+        console.error("Firestore Error:", error);
+
+    }
+
+}
 
 /* ── 9. GALLERY ──────────────────────────────────────────────── */
 function initGallery() {
-  renderProducts(SITE.products);
+
+  loadProductsFromFirebase();
+
   document.querySelectorAll('.filter-btn').forEach(btn => {
+
     btn.addEventListener('click', () => {
+
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+
       btn.classList.add('active');
+
       applyGalleryFilters();
+
     });
+
   });
+
   const searchInput = document.getElementById('productSearch');
-  searchInput && searchInput.addEventListener('input', debounce(applyGalleryFilters, 220));
+
+  if (searchInput) {
+    searchInput.addEventListener(
+      'input',
+      debounce(applyGalleryFilters, 220)
+    );
+  }
 }
 
 function applyGalleryFilters() {
