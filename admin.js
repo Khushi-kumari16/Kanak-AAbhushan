@@ -9,11 +9,16 @@
    Nothing in ka_draft_* is ever read by index.html.
    ============================================================ */
    import { db } from './firebase.js';
-
+window.editProduct = editProduct;
+window.confirmDelete = confirmDelete;
+window.switchTab = switchTab;
+window.editCollection = editCollection;
+window.editTestimonial = editTestimonial;
 import {
   doc,
   setDoc,
   getDoc,
+  deleteDoc,
   collection,
   getDocs
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
@@ -999,12 +1004,34 @@ function initDeleteModal() {
   const cancelEl  = document.getElementById('cancelDelete');
   cancelEl  && cancelEl.addEventListener('click',  () => modal.classList.remove('open'));
   modal     && modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
-  confirmEl && confirmEl.addEventListener('click', () => {
+  confirmEl && confirmEl.addEventListener('click',async() => {
     if (pendingDeleteType === 'product') {
-      DRAFT.products = DRAFT.products.filter(p => p.id !== pendingDeleteId);
-      persistDraft('products');
-      renderProductsTable();
-    } else if (pendingDeleteType === 'collection') {
+
+  try {
+
+    // Delete from Firestore
+    await deleteDoc(doc(db, "products", String(pendingDeleteId)));
+
+    // Delete from draft
+    DRAFT.products = DRAFT.products.filter(
+      p => p.id !== pendingDeleteId
+    );
+
+    persistDraft('products');
+
+    renderProductsTable();
+
+    showToast("Product deleted successfully.");
+
+  } catch (error) {
+
+    console.error(error);
+
+    showToast("Failed to delete product.", "error");
+
+  }
+
+} else if (pendingDeleteType === 'collection') {
       DRAFT.collections = DRAFT.collections.filter(c => c.id !== pendingDeleteId);
       persistDraft('collections');
       renderCollectionsGrid();
