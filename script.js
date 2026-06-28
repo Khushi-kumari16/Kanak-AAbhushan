@@ -9,7 +9,9 @@ import { db } from "./firebase.js";
 
 import {
     collection,
-    getDocs
+    getDocs,
+    doc,
+    getDoc
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 /* ── LIVE DATA KEYS (written by admin on Publish) ────────────── */
 const LIVE = {
@@ -246,46 +248,87 @@ function animateCounter(el) {
 }
 
 /* ── 7. HERO (dynamic) ───────────────────────────────────────── */
-function applyHeroContent() {
-  const h = SITE.hero;
-  const eyebrow = document.querySelector('.hero-eyebrow');
-  const titleEl = document.querySelector('.hero-title');
-  const descEl  = document.querySelector('.hero-desc');
-  const cta1    = document.querySelector('.hero-cta .btn-primary');
-  const cta2    = document.querySelector('.hero-cta .btn-outline');
-  if (eyebrow) eyebrow.textContent = h.eyebrow;
-  if (titleEl) titleEl.innerHTML   = `${h.title}<br/><em>${h.italic}</em>`;
-  if (descEl)  descEl.textContent  = h.desc;
-  if (cta1)    cta1.textContent    = h.cta1;
-  if (cta2)    cta2.textContent    = h.cta2;
-}
+async function applyHeroContent() {
 
+    try {
+
+        const snap = await getDoc(doc(db, "hero", "current"));
+
+        if (!snap.exists()) return;
+
+        const h = snap.data();
+
+        const eyebrow = document.querySelector('.hero-eyebrow');
+        const titleEl = document.querySelector('.hero-title');
+        const descEl  = document.querySelector('.hero-desc');
+        const cta1    = document.querySelector('.hero-cta .btn-primary');
+        const cta2    = document.querySelector('.hero-cta .btn-outline');
+
+        if (eyebrow) eyebrow.textContent = h.eyebrow || "";
+        if (titleEl) titleEl.innerHTML = `${h.title || ""}<br><em>${h.italic || ""}</em>`;
+        if (descEl) descEl.textContent = h.desc || "";
+        if (cta1) cta1.textContent = h.cta1 || "";
+        if (cta2) cta2.textContent = h.cta2 || "";
+
+    } catch (e) {
+
+        console.error("Hero Error:", e);
+
+    }
+
+}
 /* ── 8. COLLECTIONS (dynamic) ────────────────────────────────── */
-function applyCollections() {
-  const grid = document.querySelector('.collections-grid');
-  if (!grid) return;
-  grid.innerHTML = SITE.collections.map(c => `
-    <div class="collection-card reveal-up${c.badge ? ' hallmark-card' : ''}" data-category="${c.key}" tabindex="0">
-      <div class="collection-icon">${c.icon}</div>
-      <h3>${c.name}</h3>
-      <p>${c.desc}</p>
-      ${c.badge ? `<span class="hallmark-badge">${c.badge}</span>` : ''}
-    </div>`).join('');
-  initCollectionCardLinks();
+async function loadCollectionsFromFirebase() {
+
+    try {
+
+        const snapshot = await getDocs(collection(db, "collections"));
+
+        const collections = snapshot.docs.map(doc => doc.data());
+
+        const grid = document.querySelector(".collections-grid");
+
+        if (!grid) return;
+
+        grid.innerHTML = collections.map(c => `
+
+            <div class="collection-card reveal-up ${c.badge ? 'hallmark-card' : ''}" data-category="${c.key}">
+
+                <div class="collection-icon">${c.icon || "⚜"}</div>
+
+                <h3>${c.name}</h3>
+
+                <p>${c.desc}</p>
+
+                ${c.badge ? `<span class="hallmark-badge">${c.badge}</span>` : ""}
+
+            </div>
+
+        `).join("");
+
+        initCollectionCardLinks();
+
+    } catch (e) {
+
+        console.error("Collections Error:", e);
+
+    }
+
 }
 async function loadProductsFromFirebase() {
-
     try {
 
         const snapshot = await getDocs(collection(db, "products"));
 
-        PRODUCTS = [];
-
-        snapshot.forEach((doc) => {
-            PRODUCTS.push(doc.data());
-        });
+       PRODUCTS = snapshot.docs
+    .map(doc => doc.data())
+    .filter(p => p.name && p.desc && p.cat);
 
         console.log("Products:", PRODUCTS);
+
+        PRODUCTS.forEach((p, i) => {
+            console.log(i, p);
+        });
 
         renderProducts(PRODUCTS);
 
@@ -294,42 +337,30 @@ async function loadProductsFromFirebase() {
         console.error("Firestore Error:", error);
 
     }
-
 }
-
 /* ── 9. GALLERY ──────────────────────────────────────────────── */
-function initGallery() {
+async function initGallery() {
 
-  loadProductsFromFirebase();
+    await loadProductsFromFirebase();
 
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-
-    btn.addEventListener('click', () => {
-
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-
-      btn.classList.add('active');
-
-      applyGalleryFilters();
-
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            applyGalleryFilters();
+        });
     });
 
-  });
-
-  const searchInput = document.getElementById('productSearch');
-
-  if (searchInput) {
-    searchInput.addEventListener(
-      'input',
-      debounce(applyGalleryFilters, 220)
-    );
-  }
+    const searchInput = document.getElementById('productSearch');
+    if (searchInput) {
+        searchInput.addEventListener('input', debounce(applyGalleryFilters, 220));
+    }
 }
 
 function applyGalleryFilters() {
   const filter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
   const query  = (document.getElementById('productSearch')?.value || '').toLowerCase().trim();
-  const filtered = SITE.products.filter(p => {
+  const filtered = PRODUCTS.filter(p => {
     const matchCat  = filter === 'all' || p.cat === filter;
     const matchText = !query || p.name.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query);
     return matchCat && matchText;
@@ -351,8 +382,8 @@ function renderProducts(products) {
         <div class="product-overlay"><span>View Details</span></div>
       </div>
       <div class="product-info">
-        <h4>${p.name}</h4>
-        <p>${p.desc.slice(0,60)}…</p>
+        <h4>${p.name || "Unnamed Product"}</h4>
+        <p>${(p.desc || "No description").slice(0,60)}…</p>
         <span class="product-cat">${catLabel(p.cat)}</span>
       </div>
     </div>`).join('');
@@ -364,7 +395,7 @@ function renderProducts(products) {
 
 /* ── 10. MODAL ───────────────────────────────────────────────── */
 function openModal(id) {
-  const p = SITE.products.find(p => p.id === id);
+  const p = PRODUCTS.find(p => p.id === id);
   if (!p) return;
   const overlay = document.getElementById('productModal');
   if (!overlay) return;
@@ -405,29 +436,64 @@ function initModal() {
 }
 
 /* ── 11. RATES (dynamic) ─────────────────────────────────────── */
-function applyRates() {
-  const r = SITE.rates;
-  function fmt(v) { return `₹${(+v).toLocaleString('en-IN')}`; }
-  function changeHtml(c) {
-    const n = +c;
-    if (n === 0) return '';
-    return `<div class="rate-change ${n > 0 ? 'up' : 'down'}">${n > 0 ? '▲' : '▼'} ₹${Math.abs(n)} today</div>`;
-  }
-  function setRate(id, val, change) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.innerHTML = `${fmt(val)} <span>/gram</span>`;
-    const changeEl = el.nextElementSibling;
-    if (changeEl && changeEl.classList.contains('rate-change')) changeEl.outerHTML = changeHtml(change);
-  }
-  setRate('rate24kt',   r.gold24kt, r.gold24ktChange);
-  setRate('rate22kt',   r.gold22kt, r.gold22ktChange);
-  setRate('rate18kt',   r.gold18kt, r.gold18ktChange);
-  setRate('rateSilver', r.silver,   r.silverChange);
-  const el = document.getElementById('rateUpdateTime');
-  if (el) el.textContent = new Date().toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
-}
+async function applyRates() {
 
+    try {
+
+        const snap = await getDoc(doc(db, "rates", "today"));
+
+        if (!snap.exists()) return;
+
+        const r = snap.data();
+
+        function fmt(v) {
+            return `₹${Number(v).toLocaleString("en-IN")}`;
+        }
+
+        function changeHtml(c) {
+
+            const n = Number(c);
+
+            if (n === 0) return "";
+
+            return `<div class="rate-change ${n > 0 ? "up" : "down"}">
+                        ${n > 0 ? "▲" : "▼"} ₹${Math.abs(n)} today
+                    </div>`;
+        }
+
+        function setRate(id, value, change) {
+
+            const el = document.getElementById(id);
+
+            if (!el) return;
+
+            el.innerHTML = `${fmt(value)} <span>/gram</span>`;
+
+            const next = el.nextElementSibling;
+
+            if (next && next.classList.contains("rate-change")) {
+
+                next.outerHTML = changeHtml(change);
+
+            }
+
+        }
+
+        setRate("rate24kt", r.gold24kt, r.gold24ktChange);
+        setRate("rate22kt", r.gold22kt, r.gold22ktChange);
+        setRate("rate18kt", r.gold18kt, r.gold18ktChange);
+        setRate("rateSilver", r.silver, r.silverChange);
+
+        document.getElementById("rateUpdateTime").textContent =
+            new Date().toLocaleString("en-IN");
+
+    } catch (e) {
+
+        console.error("Rates Error:", e);
+
+    }
+
+}
 /* ── 12. TESTIMONIALS (dynamic) ──────────────────────────────── */
 function initSlider() {
   const track = document.getElementById('testimonialTrack');
@@ -622,6 +688,7 @@ function debounce(fn, wait) {
 ════════════════════════════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', () => {
   // Apply published content to DOM first
+  initLoader();
   applyHeroContent();
 
   // IMPORTANT:

@@ -13,10 +13,10 @@
 import {
   doc,
   setDoc,
+  getDoc,
   collection,
   getDocs
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-const CLOUD_NAME = "dvch8wwpr";
 const UPLOAD_PRESET = "kanak_upload";
 
 async function uploadToCloudinary(file) {
@@ -40,6 +40,43 @@ async function uploadToCloudinary(file) {
     }
 
     return data.secure_url;
+}
+async function loadProductsFromFirestore() {
+
+    const snapshot = await getDocs(collection(db, "products"));
+
+    DRAFT.products = snapshot.docs.map(doc => doc.data());
+
+    renderProductsTable();
+
+    updateDashboard();
+
+}
+async function loadHeroFromFirestore() {
+
+    const snap = await getDoc(doc(db, "hero", "current"));
+
+    if (snap.exists()) {
+
+        DRAFT.hero = snap.data();
+
+        populateHeroForm();
+
+    }
+
+}
+async function loadRatesFromFirestore() {
+
+    const snap = await getDoc(doc(db, "rates", "today"));
+
+    if (snap.exists()) {
+
+        DRAFT.rates = snap.data();
+
+        populateRatesForm();
+
+    }
+
 }
 /* ── STORAGE KEYS ────────────────────────────────────────────── */
 const KEY = {
@@ -337,58 +374,113 @@ function initPublish() {
 }
 
 async function publishAll() {
-  // Copy draft → live for every flagged section
+
   const flags = DRAFT.flags;
 
-  if (flags.products)     save(KEY.LIVE_PRODUCTS,     DRAFT.products);
-  if (flags.collections)  save(KEY.LIVE_COLLECTIONS,  DRAFT.collections);
-  if (flags.rates)        save(KEY.LIVE_RATES,        DRAFT.rates);
+  // Local publish (keep this)
+  if (flags.products)     save(KEY.LIVE_PRODUCTS, DRAFT.products);
+  if (flags.collections)  save(KEY.LIVE_COLLECTIONS, DRAFT.collections);
+  if (flags.rates)        save(KEY.LIVE_RATES, DRAFT.rates);
   if (flags.testimonials) save(KEY.LIVE_TESTIMONIALS, DRAFT.testimonials);
-  if (flags.hero)         save(KEY.LIVE_HERO,         DRAFT.hero);
-  if (flags.about)        save(KEY.LIVE_ABOUT,        DRAFT.about);
-  if (flags.contact)      save(KEY.LIVE_CONTACT,      DRAFT.contact);
+  if (flags.hero)         save(KEY.LIVE_HERO, DRAFT.hero);
+  if (flags.about)        save(KEY.LIVE_ABOUT, DRAFT.about);
+  if (flags.contact)      save(KEY.LIVE_CONTACT, DRAFT.contact);
 
-  // FIRESTORE SAVE
+  try {
 
-  if (flags.rates) {
-    await setDoc(doc(db, "rates", "current"), {
-      gold18kt: Number(DRAFT.rates.gold18kt || 0),
-      gold22kt: Number(DRAFT.rates.gold22kt || 0),
-      silver: Number(DRAFT.rates.silver || 0)
-    });
-  }
+    /* ===========================
+       HERO
+    =========================== */
 
-  if (flags.contact) {
-    await setDoc(doc(db, "contact", "info"), DRAFT.contact);
-  }
+    if (flags.hero) {
 
-  if (flags.products) {
-    for (const product of DRAFT.products) {
-      await setDoc(
-        doc(db, "products", String(product.id)),
-        {
-          id: product.id,
-          name: product.name,
-          cat: product.cat,
-          desc: product.desc,
-          weight: product.weight,
-          purity: product.purity,
-          img: product.img
-        }
-      );
+      await setDoc(doc(db, "hero", "current"), {
+
+        eyebrow: DRAFT.hero.eyebrow,
+        title: DRAFT.hero.title,
+        italic: DRAFT.hero.italic,
+        desc: DRAFT.hero.desc,
+        cta1: DRAFT.hero.cta1,
+        cta2: DRAFT.hero.cta2
+
+      });
+
     }
+
+    /* ===========================
+       RATES
+    =========================== */
+
+    if (flags.rates) {
+
+      await setDoc(doc(db, "rates", "today"), {
+
+        gold24kt: Number(DRAFT.rates.gold24kt),
+        gold24ktChange: Number(DRAFT.rates.gold24ktChange),
+
+        gold22kt: Number(DRAFT.rates.gold22kt),
+        gold22ktChange: Number(DRAFT.rates.gold22ktChange),
+
+        gold18kt: Number(DRAFT.rates.gold18kt),
+        gold18ktChange: Number(DRAFT.rates.gold18ktChange),
+
+        silver: Number(DRAFT.rates.silver),
+        silverChange: Number(DRAFT.rates.silverChange)
+
+      });
+
+    }
+
+    /* ===========================
+       PRODUCTS
+    =========================== */
+
+    if (flags.products) {
+
+      for (const product of DRAFT.products) {
+
+        await setDoc(
+          doc(db, "products", String(product.id)),
+          {
+            id: product.id,
+            name: product.name,
+            cat: product.cat,
+            desc: product.desc,
+            weight: product.weight,
+            purity: product.purity,
+            img: product.img
+          }
+        );
+
+      }
+
+    }
+
+    DRAFT.flags = {};
+
+    save(KEY.DRAFT_FLAGS, {});
+
+    updateDraftIndicator();
+
+    updateDashboard();
+
+    showToast("Published successfully!");
+
+  } catch (err) {
+
+    console.error(err);
+
+    showToast("Publish failed!", "error");
+
   }
 
-  // Clear flags
-  DRAFT.flags = {};
-  save(KEY.DRAFT_FLAGS, {});
-  updateDraftIndicator();
-  showToast('Published! Changes are now live on the website.', 'success');
-  updateDashboard();
 }
 /* ── DASHBOARD ───────────────────────────────────────────────── */
 function initDashboard() {
   updateDashboard();
+  loadProductsFromFirestore();
+loadHeroFromFirestore();
+loadRatesFromFirestore();
   // Initialise all other sub-modules
   initTabs();
   initSidebar();
