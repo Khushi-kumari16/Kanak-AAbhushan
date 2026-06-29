@@ -642,12 +642,28 @@ if (file) {
         return;
     }
 }
-  if (editId) {
+if (editId) {
+
+    const product = {
+        id: +editId,
+        name,
+        cat,
+        desc,
+        weight,
+        purity,
+        img: imageUrl || DRAFT.products.find(p => p.id == editId).img
+    };
+
     const idx = DRAFT.products.findIndex(p => p.id == editId);
-    if (idx !== -1) {
-      DRAFT.products[idx] = { id: +editId, name, cat, desc, weight, purity, img: imageUrl || DRAFT.products[idx].img };
-    }
-  } else {
+
+    DRAFT.products[idx] = product;
+
+    await setDoc(
+        doc(db, "products", String(editId)),
+        product
+    );
+
+} else {
     const newId = Date.now();
     DRAFT.products.push({
     id: newId,
