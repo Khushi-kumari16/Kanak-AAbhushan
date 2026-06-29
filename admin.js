@@ -22,6 +22,7 @@ import {
   collection,
   getDocs
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+const CLOUD_NAME = "dvch8wwpr";
 const UPLOAD_PRESET = "kanak_upload";
 
 async function uploadToCloudinary(file) {
@@ -39,6 +40,8 @@ async function uploadToCloudinary(file) {
     );
 
     const data = await response.json();
+    console.log(response.status);
+    console.log(data);
 
     if (!data.secure_url) {
         throw new Error("Upload failed");
