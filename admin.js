@@ -789,6 +789,7 @@ function populateRatesForm() {
   setVal('rSilverChange',r.silverChange    || '');
 }
 function saveRates() {
+  console.log("saveRates called");
   DRAFT.rates = {
     gold24kt:       +val('r24kt')        || DRAFT.rates.gold24kt,
     gold24ktChange: +val('r24ktChange')   || 0,
@@ -799,6 +800,7 @@ function saveRates() {
     silver:         +val('rSilver')      || DRAFT.rates.silver,
     silverChange:   +val('rSilverChange') || 0,
   };
+  console.log(DRAFT.rates);
   persistDraft('rates');
   updateDashboard();
   showToast('Rates saved to draft. Click Publish to go live.');
